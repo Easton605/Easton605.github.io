@@ -56,15 +56,24 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="aYu">
-<meta property="og:url" content="http://Easton605.github.io/index.html">
+<meta name="description" content="Loading遮罩层（兼容IE9+）场景工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。
+一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。
+源码12345678910111213141">
+<meta property="og:type" content="article">
+<meta property="og:title" content="loading遮罩">
+<meta property="og:url" content="http://Easton605.github.io/2016/03/09/loading遮罩/index.html">
 <meta property="og:site_name" content="aYu">
-<meta property="og:description">
+<meta property="og:description" content="Loading遮罩层（兼容IE9+）场景工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。
+一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。
+源码12345678910111213141">
+<meta property="og:image" content="http://Easton605.github.io/images/busybox.png">
+<meta property="og:updated_time" content="2016-03-09T15:48:01.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="aYu">
-<meta name="twitter:description">
+<meta name="twitter:title" content="loading遮罩">
+<meta name="twitter:description" content="Loading遮罩层（兼容IE9+）场景工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。
+一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。
+源码12345678910111213141">
+<meta name="twitter:image" content="http://Easton605.github.io/images/busybox.png">
 
 
 
@@ -82,7 +91,7 @@
   };
 </script>
 
-  <title> aYu </title>
+  <title> loading遮罩 | aYu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -101,9 +110,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -182,15 +189,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-
-    
-      
 
   
   
@@ -210,10 +211,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/03/09/loading遮罩/" itemprop="url">
-                  loading遮罩
-                </a>
+                loading遮罩
               
             
           </h1>
@@ -252,9 +250,7 @@
       
 
       
-        
-          
-            <h3 id="Loading遮罩层（兼容IE9-）"><a href="#Loading遮罩层（兼容IE9-）" class="headerlink" title="Loading遮罩层（兼容IE9+）"></a>Loading遮罩层（兼容IE9+）</h3><h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。</p>
+        <h3 id="Loading遮罩层（兼容IE9-）"><a href="#Loading遮罩层（兼容IE9-）" class="headerlink" title="Loading遮罩层（兼容IE9+）"></a>Loading遮罩层（兼容IE9+）</h3><h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。</p>
 <p>一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。</p>
 <h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aYu_busyBox = &#123;</span><br><span class="line">    _full_screen_busy_box: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> busyBox = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        busyBox.id = <span class="string">'busy_box_full_screen'</span>;</span><br><span class="line">        busyBox.innerText = <span class="string">'loading...'</span>;</span><br><span class="line">        <span class="keyword">var</span> _style = busyBox.style;</span><br><span class="line">        _style.position = <span class="string">'fixed'</span>;</span><br><span class="line">        _style.top = _style.right = _style.bottom = _style.left = <span class="number">0</span>;</span><br><span class="line">        _style.lineHeight = (<span class="built_in">window</span>.screen.availHeight - <span class="number">100</span>) + <span class="string">'px'</span>;</span><br><span class="line">        _style.textAlign = <span class="string">'center'</span>;</span><br><span class="line">        _style.background = <span class="string">'rgba(204, 204, 204, 0.5)'</span>;</span><br><span class="line">        _style.zIndex = <span class="number">2147483647</span>;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(busyBox);</span><br><span class="line">    &#125;,</span><br><span class="line">    show: <span class="function"><span class="keyword">function</span>(<span class="params">dom</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 不传入参数时会生成一个全屏的遮罩</span></span><br><span class="line">        <span class="keyword">if</span> (!dom) &#123;</span><br><span class="line">            aYu_busyBox._full_screen_busy_box();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">var</span> width = dom.offsetWidth;</span><br><span class="line">        <span class="keyword">var</span> height = dom.offsetHeight;</span><br><span class="line">        <span class="comment">// 当给定的dom元素存在高度和宽度时才添加遮罩，否则不添加</span></span><br><span class="line">        <span class="keyword">if</span> (!width || !height) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">var</span> busyBoxId = <span class="string">'busy_box_'</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">        dom.setAttribute(<span class="string">'busy_box_id'</span>, busyBoxId);</span><br><span class="line">        <span class="comment">// 遮罩的外层容器，提供relative定位给遮罩元素定位使用</span></span><br><span class="line">        <span class="keyword">var</span> busyBoxContainer = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        busyBoxContainer.id = busyBoxId;</span><br><span class="line">        busyBoxContainer.style.position = <span class="string">'relative'</span>;</span><br><span class="line">        <span class="comment">// 遮罩元素，采用绝对定位，不会撑起外层容器</span></span><br><span class="line">        <span class="keyword">var</span> busyBox = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        busyBox.innerText = <span class="string">'loading...'</span>;</span><br><span class="line">        <span class="keyword">var</span> _style = busyBox.style;</span><br><span class="line">        _style.position = <span class="string">'absolute'</span>;</span><br><span class="line">        _style.width = <span class="string">'100%'</span>;</span><br><span class="line">        <span class="comment">// 可能还需要增加窗口变化事件来实施修改遮罩的高度和line-height</span></span><br><span class="line">        <span class="comment">// 但是考虑到一般在查询数据时不太可能发生窗口的大小变化，所以未添加</span></span><br><span class="line">        _style.height = height + <span class="string">'px'</span>;</span><br><span class="line">        _style.lineHeight = height + <span class="string">'px'</span>;</span><br><span class="line">        _style.textAlign = <span class="string">'center'</span>;</span><br><span class="line">        _style.background = <span class="string">'rgba(204, 204, 204, 0.5)'</span>;</span><br><span class="line">        <span class="comment">// 采用浏览器的最大z-index值</span></span><br><span class="line">        _style.zIndex = <span class="number">2147483647</span>;</span><br><span class="line"></span><br><span class="line">        busyBoxContainer.appendChild(busyBox);</span><br><span class="line">        <span class="comment">// 将外层容器作为给定dom的第一个子元素，由于外层容器的高度是0，</span></span><br><span class="line">        <span class="comment">// 所以不会影响给定dom元素的其他子元素显示</span></span><br><span class="line">        dom.children[<span class="number">0</span>] ?</span><br><span class="line">            dom.insertBefore(busyBoxContainer, dom.children[<span class="number">0</span>]) :</span><br><span class="line">            dom.appendChild(busyBoxContainer);</span><br><span class="line">    &#125;,</span><br><span class="line">    hide: <span class="function"><span class="keyword">function</span>(<span class="params">dom</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> busyBox;</span><br><span class="line">        <span class="keyword">if</span> (!dom) &#123;</span><br><span class="line">            busyBox = <span class="built_in">document</span>.querySelector(<span class="string">"#busy_box_full_screen"</span>);</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(busyBox);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> busyBoxId = dom.getAttribute(<span class="string">'busy_box_id'</span>);</span><br><span class="line">        dom.removeAttribute(<span class="string">'busy_box_id'</span>);</span><br><span class="line">        busyBox = busyBoxId &amp;&amp; dom.querySelector(<span class="string">"#"</span> + busyBoxId);</span><br><span class="line">        busyBox &amp;&amp; dom.removeChild(busyBox);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h4 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h4><p><img src="/images/busybox.png" alt="Alt BusyBox"></p>
@@ -265,12 +261,12 @@
 <p><em>未完待续</em></p>
 <p>^_^</p>
 
-          
-        
       
     </div>
 
     <div>
+      
+        
       
     </div>
 
@@ -278,272 +274,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/03/02/Markdown的基本语法/" rel="next" title="Markdown的基本语法">
+                <i class="fa fa-chevron-left"></i> Markdown的基本语法
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/03/02/Markdown的基本语法/" itemprop="url">
-                  Markdown的基本语法
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-02T20:03:45+08:00" content="2016-03-02">
-              2016-03-02
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h3 id="Markdown简介"><a href="#Markdown简介" class="headerlink" title="Markdown简介"></a>Markdown简介</h3><p>简要的说，Markdown是一种标记语言，它可以让你专注于写作，而不用过于关心文字的排版，在浏览器中会被程序解析为html的格式来显示，它现在已经被广泛使用，同时它还可以兼容html语法，你可以直接在文本内部插入html的标签进行书写。</p>
-<hr>
-<h3 id="Markdown语法说明及示例"><a href="#Markdown语法说明及示例" class="headerlink" title="Markdown语法说明及示例"></a>Markdown语法说明及示例</h3><p>Markdown的每一种排版都可以有多种语法来实现，初学阶段感觉先掌握一种就够了，等以后使用过程中再慢慢熟悉学习。</p>
-<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># h1</span></span><br><span class="line"><span class="section">## h2</span></span><br><span class="line"><span class="section">### h3</span></span><br><span class="line"><span class="section">#### h4</span></span><br><span class="line"><span class="section">##### h5</span></span><br><span class="line"><span class="section">###### h6</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong><br><em>由于此处输出标题对于博客目录的生成有影响，所以此处没有输出示例</em><br><em>输出样式跟html的 <code>h1-h6</code> 标签一致。</em></p>
-<hr>
-<h4 id="2-引用"><a href="#2-引用" class="headerlink" title="2. 引用"></a>2. 引用</h4><p><em>PS：如果要摆脱引用，需要留一空行，同时引用内部可以嵌套使用各种Markdown语法。</em><br><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 定风波（苏轼）</span></span><br><span class="line"><span class="quote">&gt; *三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉，已而遂晴，故作此词。*</span></span><br><span class="line"><span class="quote">&gt; 莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。</span></span><br><span class="line"><span class="quote">&gt; 料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong></p>
-<blockquote>
-<p>定风波（苏轼）<br><em>三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉，已而遂晴，故作此词。</em><br>莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。<br>料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</p>
-</blockquote>
-<hr>
-<h4 id="3-列表"><a href="#3-列表" class="headerlink" title="3. 列表"></a>3. 列表</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>A</span><br><span class="line"><span class="bullet">2. </span>B</span><br><span class="line"><span class="code">    * C</span></span><br><span class="line"><span class="code">    * d</span></span><br><span class="line"><span class="bullet">3. </span>E</span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong></p>
-<ol>
-<li>A</li>
-<li>B<ul>
-<li>C</li>
-<li>d</li>
-</ul>
-</li>
-<li>E</li>
-</ol>
-<hr>
-<h4 id="4-代码"><a href="#4-代码" class="headerlink" title="4. 代码"></a>4. 代码</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS: 暂时还不会如何在代码内显示Markdown的源代码，所以先把`给转义掉</span><br><span class="line">\<span class="code">`\`</span>\`</span><br><span class="line">(function() &#123;</span><br><span class="line"><span class="code">    'use strict';</span></span><br><span class="line"><span class="code">    console.log('Hello Markdown.');</span></span><br><span class="line">&#125;());</span><br><span class="line">\<span class="code">`\`</span>\`</span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    &apos;use strict&apos;;</span><br><span class="line">    console.log(&apos;Hello Markdown.&apos;);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h4 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5. 分割线"></a>5. 分割线</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">***</span></span><br><span class="line"><span class="strong">*****</span>*</span><br><span class="line">PS：注意此处有空行，因为---紧跟在一行文字背后时会把此行定义为二级标签</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line"></span><br><span class="line"><span class="emphasis">___</span></span><br><span class="line"><span class="strong">_____</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong></p>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<hr>
-<h4 id="6-链接，图片"><a href="#6-链接，图片" class="headerlink" title="6. 链接，图片"></a>6. 链接，图片</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：[<span class="string">GitHub</span>](<span class="link">http://github.com</span>)</span><br><span class="line">图片：![<span class="string">Alt aYu</span>](<span class="link">http://easton605.github.io/images/ayu.png</span>)</span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong><br>链接：<a href="http://github.com" target="_blank" rel="external">GitHub</a><br>图片：<img src="http://easton605.github.io/images/ayu.png" alt="Alt aYu"></p>
-<hr>
-<h4 id="7-加粗，斜体"><a href="#7-加粗，斜体" class="headerlink" title="7. 加粗，斜体"></a>7. 加粗，斜体</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*斜体*</span></span><br><span class="line"><span class="emphasis">_斜体_</span></span><br><span class="line"><span class="strong">**加粗**</span></span><br><span class="line"><span class="strong">__加粗__</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong><br><em>斜体</em><br><em>斜体</em><br><strong>加粗</strong><br><strong>加粗</strong></p>
-<hr>
-<h4 id="8-行内代码"><a href="#8-行内代码" class="headerlink" title="8. 行内代码"></a>8. 行内代码</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是行内代码：<span class="code">`console.log('Hello Markdown.');`</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong><br>这是行内代码：<code>console.log(&#39;Hello Markdown.&#39;);</code></p>
-<hr>
-<h4 id="9-表格"><a href="#9-表格" class="headerlink" title="9. 表格"></a>9. 表格</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|表头1|表头2|</span><br><span class="line">|----|----|</span><br><span class="line">|内容1|内容2|</span><br><span class="line">|内容3|内容4|</span><br></pre></td></tr></table></figure></p>
-<p><strong>输出</strong><br><!-- TODO --></p>
-<table>
-<thead>
-<tr>
-<th>表头1</th>
-<th>表头2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>内容1</td>
-<td>内容2</td>
-</tr>
-<tr>
-<td>内容3</td>
-<td>内容4</td>
-</tr>
-</tbody>
-</table>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Markdown确实是一种很简单有效的语言，我们简单地了解以上九种格式就可以轻松的书写出排版优美的文章，用起来吧！</p>
-<p>^_^</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/01/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-01T23:25:59+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -551,6 +307,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -570,8 +330,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/ayu.png"
@@ -615,6 +384,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Loading遮罩层（兼容IE9-）"><span class="nav-number">1.</span> <span class="nav-text">Loading遮罩层（兼容IE9+）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景"><span class="nav-number">1.1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#源码"><span class="nav-number">1.2.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#效果图"><span class="nav-number">1.3.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -689,6 +475,167 @@
   
 
   
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   
 
