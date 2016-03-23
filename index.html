@@ -211,6 +211,100 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/24/判断浏览器版本/" itemprop="url">
+                  判断浏览器版本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-24T00:10:41+08:00" content="2016-03-24">
+              2016-03-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>为了使web应用可以完美的运行在不同版本的浏览器上，我们不可避免的要去获取用户的浏览器版本，然后来运行不同的代码或者样式等来满足兼容性的要求，那么我们来看下如何来判断浏览器的版本。</p>
+<h4 id="在html中判断浏览器版本"><a href="#在html中判断浏览器版本" class="headerlink" title="在html中判断浏览器版本"></a>在html中判断浏览器版本</h4><p>在html中判断浏览器的版本，我们可以直接根据不同的浏览器版本来加载所需要的CSS，JS文件等，比如某些html5兼容性的脚本在chrome等现在浏览器中我们根本不需要加载，只需要在IE的低版本中加载即可，尽量减少http的请求。<br>在html中主要用来判断IE9及以下的版本(<strong>IE10+已经不再支持</strong>)，主要规则如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">可以将以下代码直接运行在IE浏览器中测试，注意空格哦~</span><br><span class="line"><span class="comment">&lt;!--[if IE]&gt;&lt;h3&gt;我是IE浏览器&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 8]&gt;&lt;h3&gt;精确指定IE版本&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if lt IE 8]&gt;&lt;h3&gt;小于IE8的版本(lt-&gt;less than)&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if lte IE 8]&gt;&lt;h3&gt;小于等于IE8的版本(lt-&gt;less than or equal)&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if gt IE 8]&gt;&lt;h3&gt;大于IE8的版本(lt-&gt;greater than)&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if gte IE 8]&gt;&lt;h3&gt;大于等于IE8的版本(lt-&gt;greater than or equal)&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if !(IE 8)]&gt;&lt;h3&gt;非IE8的版本&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if (IE 8)|(IE 7)]&gt;&lt;h3&gt;IE8或者IE7的版本&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if (gt IE 7)&amp;(lt IE 9)]&gt;&lt;h3&gt;大于IE7且小于IE9的版本&lt;/h3&gt;&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="在JS中判断浏览器版本"><a href="#在JS中判断浏览器版本" class="headerlink" title="在JS中判断浏览器版本"></a>在JS中判断浏览器版本</h4><p><em>主要以IE，Chrome，FF进行测试</em></p>
+<h5 id="通过userAgent判断版本-每个浏览器基本都会定制该信息"><a href="#通过userAgent判断版本-每个浏览器基本都会定制该信息" class="headerlink" title="通过userAgent判断版本(每个浏览器基本都会定制该信息)"></a>通过userAgent判断版本(每个浏览器基本都会定制该信息)</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">具体的版本号可以通过正则解析出来</span><br><span class="line"><span class="keyword">var</span> ua = navigator.userAgent.toUpperCase();</span><br><span class="line"><span class="keyword">if</span> (<span class="regexp">/EDGE/</span>.test(ua)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Edge'</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/TRIDENT/</span>.test(ua) || <span class="regexp">/MSIE/</span>.test(ua)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'IE'</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/FIREFOXE/</span>.test(ua)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'FireFox'</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/CHROME/</span>.test(ua)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Chrome'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="通过浏览器特性判断该特性是否可用"><a href="#通过浏览器特性判断该特性是否可用" class="headerlink" title="通过浏览器特性判断该特性是否可用"></a>通过浏览器特性判断该特性是否可用</h5><p>通过具体的判断某一个方法或者属性是否存在来判断该功能是否可用，比如数组的forEach方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">Array</span>.prototype.forEach) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'可以使用forEach.'</span>);</span><br><span class="line">    <span class="comment">// TODO</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'不可以使用forEach.'</span>);</span><br><span class="line">    <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对于浏览器兼容性掌握主要还是需要在使用过程中多总结多记录，趟过坑下次就记住了。。<br>忍不住吐槽兼容性的要求真的是阻碍人类发展的绊脚石啊。。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/09/loading遮罩/" itemprop="url">
                   loading遮罩
                 </a>
@@ -355,16 +449,16 @@
             <h3 id="Markdown简介"><a href="#Markdown简介" class="headerlink" title="Markdown简介"></a>Markdown简介</h3><p>简要的说，Markdown是一种标记语言，它可以让你专注于写作，而不用过于关心文字的排版，在浏览器中会被程序解析为html的格式来显示，它现在已经被广泛使用，同时它还可以兼容html语法，你可以直接在文本内部插入html的标签进行书写。</p>
 <hr>
 <h3 id="Markdown语法说明及示例"><a href="#Markdown语法说明及示例" class="headerlink" title="Markdown语法说明及示例"></a>Markdown语法说明及示例</h3><p>Markdown的每一种排版都可以有多种语法来实现，初学阶段感觉先掌握一种就够了，等以后使用过程中再慢慢熟悉学习。</p>
-<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># h1</span></span><br><span class="line"><span class="section">## h2</span></span><br><span class="line"><span class="section">### h3</span></span><br><span class="line"><span class="section">#### h4</span></span><br><span class="line"><span class="section">##### h5</span></span><br><span class="line"><span class="section">###### h6</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># h1</span></span><br><span class="line"><span class="section">## h2</span></span><br><span class="line"><span class="section">### h3</span></span><br><span class="line"><span class="section">#### h4</span></span><br><span class="line"><span class="section">##### h5</span></span><br><span class="line"><span class="section">###### h6</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong><br><em>由于此处输出标题对于博客目录的生成有影响，所以此处没有输出示例</em><br><em>输出样式跟html的 <code>h1-h6</code> 标签一致。</em></p>
 <hr>
-<h4 id="2-引用"><a href="#2-引用" class="headerlink" title="2. 引用"></a>2. 引用</h4><p><em>PS：如果要摆脱引用，需要留一空行，同时引用内部可以嵌套使用各种Markdown语法。</em><br><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 定风波（苏轼）</span></span><br><span class="line"><span class="quote">&gt; *三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉，已而遂晴，故作此词。*</span></span><br><span class="line"><span class="quote">&gt; 莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。</span></span><br><span class="line"><span class="quote">&gt; 料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p><em>PS：如果要摆脱引用，需要留一空行，同时引用内部可以嵌套使用各种Markdown语法。</em><br><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 定风波（苏轼）</span></span><br><span class="line"><span class="quote">&gt; *三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉，已而遂晴，故作此词。*</span></span><br><span class="line"><span class="quote">&gt; 莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。</span></span><br><span class="line"><span class="quote">&gt; 料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong></p>
 <blockquote>
 <p>定风波（苏轼）<br><em>三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉，已而遂晴，故作此词。</em><br>莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。<br>料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</p>
 </blockquote>
 <hr>
-<h4 id="3-列表"><a href="#3-列表" class="headerlink" title="3. 列表"></a>3. 列表</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>A</span><br><span class="line"><span class="bullet">2. </span>B</span><br><span class="line"><span class="code">    * C</span></span><br><span class="line"><span class="code">    * d</span></span><br><span class="line"><span class="bullet">3. </span>E</span><br></pre></td></tr></table></figure></p>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>A</span><br><span class="line"><span class="bullet">2. </span>B</span><br><span class="line"><span class="code">    * C</span></span><br><span class="line"><span class="code">    * d</span></span><br><span class="line"><span class="bullet">3. </span>E</span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong></p>
 <ol>
 <li>A</li>
@@ -376,10 +470,10 @@
 <li>E</li>
 </ol>
 <hr>
-<h4 id="4-代码"><a href="#4-代码" class="headerlink" title="4. 代码"></a>4. 代码</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS: 暂时还不会如何在代码内显示Markdown的源代码，所以先把`给转义掉</span><br><span class="line">\<span class="code">`\`</span>\`</span><br><span class="line">(function() &#123;</span><br><span class="line"><span class="code">    'use strict';</span></span><br><span class="line"><span class="code">    console.log('Hello Markdown.');</span></span><br><span class="line">&#125;());</span><br><span class="line">\<span class="code">`\`</span>\`</span><br></pre></td></tr></table></figure></p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS: 暂时还不会如何在代码内显示Markdown的源代码，所以先把`给转义掉</span><br><span class="line">\<span class="code">`\`</span>\`</span><br><span class="line">(function() &#123;</span><br><span class="line"><span class="code">    'use strict';</span></span><br><span class="line"><span class="code">    console.log('Hello Markdown.');</span></span><br><span class="line">&#125;());</span><br><span class="line">\<span class="code">`\`</span>\`</span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    &apos;use strict&apos;;</span><br><span class="line">    console.log(&apos;Hello Markdown.&apos;);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h4 id="5-分割线"><a href="#5-分割线" class="headerlink" title="5. 分割线"></a>5. 分割线</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">***</span></span><br><span class="line"><span class="strong">*****</span>*</span><br><span class="line">PS：注意此处有空行，因为---紧跟在一行文字背后时会把此行定义为二级标签</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line"></span><br><span class="line"><span class="emphasis">___</span></span><br><span class="line"><span class="strong">_____</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">***</span></span><br><span class="line"><span class="strong">*****</span>*</span><br><span class="line">PS：注意此处有空行，因为---紧跟在一行文字背后时会把此行定义为二级标签</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">-----</span><br><span class="line"></span><br><span class="line"><span class="emphasis">___</span></span><br><span class="line"><span class="strong">_____</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong></p>
 <hr>
 <hr>
@@ -388,16 +482,16 @@
 <hr>
 <hr>
 <hr>
-<h4 id="6-链接，图片"><a href="#6-链接，图片" class="headerlink" title="6. 链接，图片"></a>6. 链接，图片</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：[<span class="string">GitHub</span>](<span class="link">http://github.com</span>)</span><br><span class="line">图片：![<span class="string">Alt aYu</span>](<span class="link">http://easton605.github.io/images/ayu.png</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="链接，图片"><a href="#链接，图片" class="headerlink" title="链接，图片"></a>链接，图片</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：[<span class="string">GitHub</span>](<span class="link">http://github.com</span>)</span><br><span class="line">图片：![<span class="string">Alt aYu</span>](<span class="link">http://easton605.github.io/images/ayu.png</span>)</span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong><br>链接：<a href="http://github.com" target="_blank" rel="external">GitHub</a><br>图片：<img src="http://easton605.github.io/images/ayu.png" alt="Alt aYu"></p>
 <hr>
-<h4 id="7-加粗，斜体"><a href="#7-加粗，斜体" class="headerlink" title="7. 加粗，斜体"></a>7. 加粗，斜体</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*斜体*</span></span><br><span class="line"><span class="emphasis">_斜体_</span></span><br><span class="line"><span class="strong">**加粗**</span></span><br><span class="line"><span class="strong">__加粗__</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="加粗，斜体"><a href="#加粗，斜体" class="headerlink" title="加粗，斜体"></a>加粗，斜体</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="emphasis">*斜体*</span></span><br><span class="line"><span class="emphasis">_斜体_</span></span><br><span class="line"><span class="strong">**加粗**</span></span><br><span class="line"><span class="strong">__加粗__</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong><br><em>斜体</em><br><em>斜体</em><br><strong>加粗</strong><br><strong>加粗</strong></p>
 <hr>
-<h4 id="8-行内代码"><a href="#8-行内代码" class="headerlink" title="8. 行内代码"></a>8. 行内代码</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是行内代码：<span class="code">`console.log('Hello Markdown.');`</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="行内代码"><a href="#行内代码" class="headerlink" title="行内代码"></a>行内代码</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是行内代码：<span class="code">`console.log('Hello Markdown.');`</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong><br>这是行内代码：<code>console.log(&#39;Hello Markdown.&#39;);</code></p>
 <hr>
-<h4 id="9-表格"><a href="#9-表格" class="headerlink" title="9. 表格"></a>9. 表格</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|表头1|表头2|</span><br><span class="line">|----|----|</span><br><span class="line">|内容1|内容2|</span><br><span class="line">|内容3|内容4|</span><br></pre></td></tr></table></figure></p>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><p><strong>源码</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|表头1|表头2|</span><br><span class="line">|----|----|</span><br><span class="line">|内容1|内容2|</span><br><span class="line">|内容3|内容4|</span><br></pre></td></tr></table></figure></p>
 <p><strong>输出</strong><br><!-- TODO --></p>
 <table>
 <thead>
@@ -419,103 +513,6 @@
 </table>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Markdown确实是一种很简单有效的语言，我们简单地了解以上九种格式就可以轻松的书写出排版优美的文章，用起来吧！</p>
 <p>^_^</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/01/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-01T23:25:59+08:00" content="2016-03-01">
-              2016-03-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
           
         
