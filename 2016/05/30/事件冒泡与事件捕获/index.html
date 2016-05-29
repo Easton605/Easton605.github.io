@@ -56,24 +56,23 @@
 
 
 
-<meta name="description" content="场景工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。
-一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。
-源码兼容IE9+12345678910111213141516171819202">
+<meta name="description" content="众所周知，在浏览器中存在两种事件模型，他们分别是事件冒泡与事件捕获，W3C的标准是两种都支持，在新版浏览器中我们可以通过设置addEventListener函数的第三个参数来设置使用哪种模型，false（默认）– 事件冒泡，true – 事件捕获，不过由于事件冒泡的通用性更加广泛，所以我们一般使用事件冒泡模型
+详解所谓的事件冒泡模型我们可以理解为自下而上的事件模型，类似于我党的农村包围城市战略，先">
 <meta property="og:type" content="article">
-<meta property="og:title" content="loading遮罩">
-<meta property="og:url" content="http://Easton605.github.io/2016/03/09/loading遮罩/index.html">
+<meta property="og:title" content="事件冒泡与事件捕获">
+<meta property="og:url" content="http://Easton605.github.io/2016/05/30/事件冒泡与事件捕获/index.html">
 <meta property="og:site_name" content="aYu">
-<meta property="og:description" content="场景工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。
-一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。
-源码兼容IE9+12345678910111213141516171819202">
-<meta property="og:image" content="http://Easton605.github.io/images/busybox.png">
-<meta property="og:updated_time" content="2016-03-09T15:55:14.706Z">
+<meta property="og:description" content="众所周知，在浏览器中存在两种事件模型，他们分别是事件冒泡与事件捕获，W3C的标准是两种都支持，在新版浏览器中我们可以通过设置addEventListener函数的第三个参数来设置使用哪种模型，false（默认）– 事件冒泡，true – 事件捕获，不过由于事件冒泡的通用性更加广泛，所以我们一般使用事件冒泡模型
+详解所谓的事件冒泡模型我们可以理解为自下而上的事件模型，类似于我党的农村包围城市战略，先">
+<meta property="og:image" content="http://Easton605.github.io/images/event-dtu.png">
+<meta property="og:image" content="http://Easton605.github.io/images/event-utd.png">
+<meta property="og:image" content="http://Easton605.github.io/images/event-all.png">
+<meta property="og:updated_time" content="2016-05-29T16:43:10.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="loading遮罩">
-<meta name="twitter:description" content="场景工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。
-一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。
-源码兼容IE9+12345678910111213141516171819202">
-<meta name="twitter:image" content="http://Easton605.github.io/images/busybox.png">
+<meta name="twitter:title" content="事件冒泡与事件捕获">
+<meta name="twitter:description" content="众所周知，在浏览器中存在两种事件模型，他们分别是事件冒泡与事件捕获，W3C的标准是两种都支持，在新版浏览器中我们可以通过设置addEventListener函数的第三个参数来设置使用哪种模型，false（默认）– 事件冒泡，true – 事件捕获，不过由于事件冒泡的通用性更加广泛，所以我们一般使用事件冒泡模型
+详解所谓的事件冒泡模型我们可以理解为自下而上的事件模型，类似于我党的农村包围城市战略，先">
+<meta name="twitter:image" content="http://Easton605.github.io/images/event-dtu.png">
 
 
 
@@ -91,7 +90,7 @@
   };
 </script>
 
-  <title> loading遮罩 | aYu </title>
+  <title> 事件冒泡与事件捕获 | aYu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -211,7 +210,7 @@
             
             
               
-                loading遮罩
+                事件冒泡与事件捕获
               
             
           </h1>
@@ -223,8 +222,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-09T23:25:08+08:00" content="2016-03-09">
-              2016-03-09
+            <time itemprop="dateCreated" datetime="2016-05-30T00:34:24+08:00" content="2016-05-30">
+              2016-05-30
             </time>
           </span>
 
@@ -234,8 +233,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/09/loading遮罩/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/09/loading遮罩/" itemprop="commentsCount"></span>
+                <a href="/2016/05/30/事件冒泡与事件捕获/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/事件冒泡与事件捕获/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -257,16 +256,13 @@
       
 
       
-        <h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>工作中我们时常会遇到后台读取数据比较慢的场景，此时我们一般需要生成一个遮罩层来表明正在加载数据的状态，同时也起到阻止用户继续操作的功能。</p>
-<p>一般的遮罩层都是针对全屏的，但是有时我们还需要针对某一个Dom来进行遮罩，于是书写了如下工程，当传入某个Dom元素时会在改Dom元素上增加遮罩，如果未传入参数则会增加全屏遮罩。</p>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><p><strong>兼容IE9+</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aYu_busyBox = &#123;</span><br><span class="line">    _full_screen_busy_box: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> busyBox = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        busyBox.id = <span class="string">'busy_box_full_screen'</span>;</span><br><span class="line">        busyBox.innerText = <span class="string">'loading...'</span>;</span><br><span class="line">        <span class="keyword">var</span> _style = busyBox.style;</span><br><span class="line">        _style.position = <span class="string">'fixed'</span>;</span><br><span class="line">        _style.top = _style.right = _style.bottom = _style.left = <span class="number">0</span>;</span><br><span class="line">        _style.lineHeight = (<span class="built_in">window</span>.screen.availHeight - <span class="number">100</span>) + <span class="string">'px'</span>;</span><br><span class="line">        _style.textAlign = <span class="string">'center'</span>;</span><br><span class="line">        _style.background = <span class="string">'rgba(204, 204, 204, 0.5)'</span>;</span><br><span class="line">        _style.zIndex = <span class="number">2147483647</span>;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(busyBox);</span><br><span class="line">    &#125;,</span><br><span class="line">    show: <span class="function"><span class="keyword">function</span>(<span class="params">dom</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 不传入参数时会生成一个全屏的遮罩</span></span><br><span class="line">        <span class="keyword">if</span> (!dom) &#123;</span><br><span class="line">            aYu_busyBox._full_screen_busy_box();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">var</span> width = dom.offsetWidth;</span><br><span class="line">        <span class="keyword">var</span> height = dom.offsetHeight;</span><br><span class="line">        <span class="comment">// 当给定的dom元素存在高度和宽度时才添加遮罩，否则不添加</span></span><br><span class="line">        <span class="keyword">if</span> (!width || !height) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">var</span> busyBoxId = <span class="string">'busy_box_'</span> + <span class="built_in">Date</span>.now();</span><br><span class="line">        dom.setAttribute(<span class="string">'busy_box_id'</span>, busyBoxId);</span><br><span class="line">        <span class="comment">// 遮罩的外层容器，提供relative定位给遮罩元素定位使用</span></span><br><span class="line">        <span class="keyword">var</span> busyBoxContainer = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        busyBoxContainer.id = busyBoxId;</span><br><span class="line">        busyBoxContainer.style.position = <span class="string">'relative'</span>;</span><br><span class="line">        <span class="comment">// 遮罩元素，采用绝对定位，不会撑起外层容器</span></span><br><span class="line">        <span class="keyword">var</span> busyBox = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        busyBox.innerText = <span class="string">'loading...'</span>;</span><br><span class="line">        <span class="keyword">var</span> _style = busyBox.style;</span><br><span class="line">        _style.position = <span class="string">'absolute'</span>;</span><br><span class="line">        _style.width = <span class="string">'100%'</span>;</span><br><span class="line">        <span class="comment">// 可能还需要增加窗口变化事件来实施修改遮罩的高度和line-height</span></span><br><span class="line">        <span class="comment">// 但是考虑到一般在查询数据时不太可能发生窗口的大小变化，所以未添加</span></span><br><span class="line">        _style.height = height + <span class="string">'px'</span>;</span><br><span class="line">        _style.lineHeight = height + <span class="string">'px'</span>;</span><br><span class="line">        _style.textAlign = <span class="string">'center'</span>;</span><br><span class="line">        _style.background = <span class="string">'rgba(204, 204, 204, 0.5)'</span>;</span><br><span class="line">        <span class="comment">// 采用浏览器的最大z-index值</span></span><br><span class="line">        _style.zIndex = <span class="number">2147483647</span>;</span><br><span class="line"></span><br><span class="line">        busyBoxContainer.appendChild(busyBox);</span><br><span class="line">        <span class="comment">// 将外层容器作为给定dom的第一个子元素，由于外层容器的高度是0，</span></span><br><span class="line">        <span class="comment">// 所以不会影响给定dom元素的其他子元素显示</span></span><br><span class="line">        dom.children[<span class="number">0</span>] ?</span><br><span class="line">            dom.insertBefore(busyBoxContainer, dom.children[<span class="number">0</span>]) :</span><br><span class="line">            dom.appendChild(busyBoxContainer);</span><br><span class="line">    &#125;,</span><br><span class="line">    hide: <span class="function"><span class="keyword">function</span>(<span class="params">dom</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> busyBox;</span><br><span class="line">        <span class="keyword">if</span> (!dom) &#123;</span><br><span class="line">            busyBox = <span class="built_in">document</span>.querySelector(<span class="string">"#busy_box_full_screen"</span>);</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(busyBox);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> busyBoxId = dom.getAttribute(<span class="string">'busy_box_id'</span>);</span><br><span class="line">        dom.removeAttribute(<span class="string">'busy_box_id'</span>);</span><br><span class="line">        busyBox = busyBoxId &amp;&amp; dom.querySelector(<span class="string">"#"</span> + busyBoxId);</span><br><span class="line">        busyBox &amp;&amp; dom.removeChild(busyBox);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h4 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h4><p><img src="/images/busybox.png" alt="Alt BusyBox"></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ol>
-<li>在书写代码过程中发现习惯使用jQuery之后，对于JS的好多原生方法不熟悉，需要温故知新。</li>
-<li>对于未知高度的Dom元素怎么让文字垂直居中是个问题。<strong>TODO</strong></li>
-</ol>
-<p><em>未完待续</em></p>
-<p>^_^</p>
+        <p>众所周知，在浏览器中存在两种事件模型，他们分别是事件冒泡与事件捕获，W3C的标准是两种都支持，在新版浏览器中我们可以通过设置addEventListener函数的第三个参数来设置使用哪种模型，false（默认）– 事件冒泡，true – 事件捕获，不过由于事件冒泡的通用性更加广泛，所以我们一般使用事件冒泡模型</p>
+<h3 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h3><p>所谓的事件冒泡模型我们可以理解为自下而上的事件模型，类似于我党的农村包围城市战略，先在最底层的百姓号召相应，然后自下而上的完成统一，所以我们看事件冒泡的事件流如下：<br><img src="/images/event-dtu.png" alt="Alt DownToUp"></p>
+<p>而事件捕获则恰恰相反，它恰似苏联的起义模式，走城市包围农村的路线，自上而下的完成全国统一，事件流如下：<br><img src="/images/event-utd.png" alt="Alt UpToDown"></p>
+<p>那么他们综合起来的事件流就是这个样子的：<br><img src="/images/event-all.png" alt="Alt All"></p>
+<p>下面我们用代码示例来佐证上面的描述</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>事件冒泡与事件捕获<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"click_item_parent"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span> <span class="attr">id</span>=<span class="string">"click_item"</span>&gt;</span>Hello click<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">        'use strict'</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> item = <span class="built_in">document</span>.querySelector(<span class="string">'#click_item'</span>);</span><br><span class="line">        <span class="keyword">var</span> itemParent = <span class="built_in">document</span>.querySelector(<span class="string">'#click_item_parent'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">upToDownEvent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            item.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'事件捕获 --&gt; From click_item'</span>);</span><br><span class="line">            &#125;, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">            itemParent.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'事件捕获 --&gt; From click_item_parent'</span>);</span><br><span class="line">            &#125;, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">downToUpEvent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            item.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'事件冒泡 --&gt; From click_item'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            itemParent.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'事件冒泡 --&gt; From click_item_parent'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// item元素的click事件执行顺序与事件的注册顺序有关</span></span><br><span class="line">        upToDownEvent();</span><br><span class="line">        downToUpEvent();</span><br><span class="line">    &#125;)();</span><br><span class="line">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="阻止事件传递"><a href="#阻止事件传递" class="headerlink" title="阻止事件传递"></a>阻止事件传递</h3><p>既然事件是会被传递的，我们总有某种情况下是希望事件可以不被传递的，那怎么办呢，请看代码<br>只需要简单的调用stopPropagation函数即可（另一个函数preventDefault用来阻止浏览器默认事件）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopEventTransfer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    item.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        e.stopPropagation();</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'阻止事件冒泡 --&gt; 被阻止'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    itemParent.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'阻止事件冒泡 --&gt; 我不会打印'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -284,17 +280,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/02/Markdown的基本语法/" rel="next" title="Markdown的基本语法">
-                <i class="fa fa-chevron-left"></i> Markdown的基本语法
+              <a href="/2016/04/22/javascript的模块规范/" rel="next" title="javascript的模块规范">
+                <i class="fa fa-chevron-left"></i> javascript的模块规范
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/24/判断浏览器版本/" rel="prev" title="判断浏览器版本">
-                判断浏览器版本 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -320,8 +312,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/09/loading遮罩/"
-           data-title="loading遮罩" data-url="http://Easton605.github.io/2016/03/09/loading遮罩/">
+      <div class="ds-thread" data-thread-key="2016/05/30/事件冒泡与事件捕获/"
+           data-title="事件冒泡与事件捕获" data-url="http://Easton605.github.io/2016/05/30/事件冒泡与事件捕获/">
       </div>
     
   </div>
@@ -409,7 +401,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#源码"><span class="nav-number">2.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#效果图"><span class="nav-number">3.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#详解"><span class="nav-number">1.</span> <span class="nav-text">详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止事件传递"><span class="nav-number">3.</span> <span class="nav-text">阻止事件传递</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
