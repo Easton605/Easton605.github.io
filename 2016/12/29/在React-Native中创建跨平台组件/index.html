@@ -40,7 +40,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="模块化," />
+  <meta name="keywords" content="React-Native," />
 
 
 
@@ -56,19 +56,19 @@
 
 
 
-<meta name="description" content="javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。
-CommonJS的模块规范AMDCMD">
+<meta name="description" content="React-Native中，Facebook已经给我们提供了很多的组件，其中大部分都拥有跨平台的能力，但是仍然存在部分组件是无法跨平台的，比如toast组件，Facebook只提供了Android平台上的toast，iOS平台并没有提供，当我们想在两个平台上使用一套代码来运行，无疑我们需要对toast组件进行改造，赋予其跨平台的能力。
+如何跨平台使用Platform模块当逻辑较简单是我们可以使用R">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript的模块规范">
-<meta property="og:url" content="http://Easton605.github.io/2016/04/22/javascript的模块规范/index.html">
+<meta property="og:title" content="在React-Native中创建跨平台组件">
+<meta property="og:url" content="http://Easton605.github.io/2016/12/29/在React-Native中创建跨平台组件/index.html">
 <meta property="og:site_name" content="aYu">
-<meta property="og:description" content="javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。
-CommonJS的模块规范AMDCMD">
-<meta property="og:updated_time" content="2016-12-29T14:17:14.581Z">
+<meta property="og:description" content="React-Native中，Facebook已经给我们提供了很多的组件，其中大部分都拥有跨平台的能力，但是仍然存在部分组件是无法跨平台的，比如toast组件，Facebook只提供了Android平台上的toast，iOS平台并没有提供，当我们想在两个平台上使用一套代码来运行，无疑我们需要对toast组件进行改造，赋予其跨平台的能力。
+如何跨平台使用Platform模块当逻辑较简单是我们可以使用R">
+<meta property="og:updated_time" content="2016-12-29T15:00:44.534Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript的模块规范">
-<meta name="twitter:description" content="javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。
-CommonJS的模块规范AMDCMD">
+<meta name="twitter:title" content="在React-Native中创建跨平台组件">
+<meta name="twitter:description" content="React-Native中，Facebook已经给我们提供了很多的组件，其中大部分都拥有跨平台的能力，但是仍然存在部分组件是无法跨平台的，比如toast组件，Facebook只提供了Android平台上的toast，iOS平台并没有提供，当我们想在两个平台上使用一套代码来运行，无疑我们需要对toast组件进行改造，赋予其跨平台的能力。
+如何跨平台使用Platform模块当逻辑较简单是我们可以使用R">
 
 
 
@@ -86,7 +86,7 @@ CommonJS的模块规范AMDCMD">
   };
 </script>
 
-  <title> javascript的模块规范 | aYu </title>
+  <title> 在React-Native中创建跨平台组件 | aYu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -206,7 +206,7 @@ CommonJS的模块规范AMDCMD">
             
             
               
-                javascript的模块规范
+                在React-Native中创建跨平台组件
               
             
           </h1>
@@ -218,8 +218,8 @@ CommonJS的模块规范AMDCMD">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T23:45:21+08:00" content="2016-04-22">
-              2016-04-22
+            <time itemprop="dateCreated" datetime="2016-12-29T22:22:58+08:00" content="2016-12-29">
+              2016-12-29
             </time>
           </span>
 
@@ -229,8 +229,8 @@ CommonJS的模块规范AMDCMD">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/22/javascript的模块规范/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/22/javascript的模块规范/" itemprop="commentsCount"></span>
+                <a href="/2016/12/29/在React-Native中创建跨平台组件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/29/在React-Native中创建跨平台组件/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -252,8 +252,12 @@ CommonJS的模块规范AMDCMD">
       
 
       
-        <p>javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。</p>
-<h3 id="CommonJS的模块规范"><a href="#CommonJS的模块规范" class="headerlink" title="CommonJS的模块规范"></a>CommonJS的模块规范</h3><h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3>
+        <p>React-Native中，Facebook已经给我们提供了很多的组件，其中大部分都拥有跨平台的能力，但是仍然存在部分组件是无法跨平台的，比如toast组件，Facebook只提供了Android平台上的toast，iOS平台并没有提供，当我们想在两个平台上使用一套代码来运行，无疑我们需要对toast组件进行改造，赋予其跨平台的能力。</p>
+<h3 id="如何跨平台"><a href="#如何跨平台" class="headerlink" title="如何跨平台"></a>如何跨平台</h3><h4 id="使用Platform模块"><a href="#使用Platform模块" class="headerlink" title="使用Platform模块"></a>使用Platform模块</h4><p>当逻辑较简单是我们可以使用React-Native中提供的Platform模块来判断当前所处的平台，从而走不同的分支代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Platform &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// iOS平台下的逻辑</span></span><br><span class="line"><span class="keyword">if</span> (Platform.OS === <span class="string">'ios'</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line"><span class="comment">// Android平台下的逻辑</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (Platform.OS === <span class="string">'android'</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="使用对应文件后缀名"><a href="#使用对应文件后缀名" class="headerlink" title="使用对应文件后缀名"></a>使用对应文件后缀名</h4><p>当逻辑较复杂是我们就应该使用文件后缀名的方式来区分不同的平台，不同平台的代码分处在对应的文件下，逻辑更加清晰，React-Native会自动根据不同的平台去读取不同的文件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名称</span></span><br><span class="line">SomeComponent.andorid.js</span><br><span class="line">SomeComponent.ios.js</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">import</span> SomeComponent <span class="keyword">from</span> <span class="string">'./SomeComponent'</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Toast实战"><a href="#Toast实战" class="headerlink" title="Toast实战"></a>Toast实战</h3><p>如此一来我们的实现思路就清晰了，同时因为Android平台已经提供该组件，所以我们选择在iOS平台下也实现一个具有相同API的原生Toast组件，然后使用Platform的方式来加载不同的Native组件使用，至于iOS如何实现略去不表<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Toast.js</span></span><br><span class="line"><span class="comment">// 重新封装一个名称为Toast的组件，iOS中实现的原生组件名称为ToastIOS</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NativeModules, ToastAndroid, Platform &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> RCTToast = Platform.OS === <span class="string">'android'</span> ? ToastAndroid : NativeModules.ToastIOS;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Toast</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Toast duration constants</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> SHORT = RCTToast.SHORT;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> LONG = RCTToast.LONG;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Toast gravity constants</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> TOP = RCTToast.TOP;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> BOTTOM = RCTToast.BOTTOM;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> CENTER = RCTToast.CENTER;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> show(message, duration) &#123;</span><br><span class="line">        RCTToast.show(</span><br><span class="line">            message,</span><br><span class="line">            duration === <span class="literal">undefined</span> ? <span class="keyword">this</span>.SHORT : duration</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> showWithGravity(message, duration, gravity) &#123;</span><br><span class="line">        RCTToast.showWithGravity(</span><br><span class="line">            message,</span><br><span class="line">            duration === <span class="literal">undefined</span> ? <span class="keyword">this</span>.SHORT : duration,</span><br><span class="line">            gravity</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样子我们封装出来的组件就可以拥有跨平台的功能了，而且使用的方法与Andorid提供的原生组件一致，不会额外增加用户的学习行为。</p>
+
       
     </div>
 
@@ -267,7 +271,7 @@ CommonJS的模块规范AMDCMD">
       
         <div class="post-tags">
           
-            <a href="/tags/模块化/" rel="tag">#模块化</a>
+            <a href="/tags/React-Native/" rel="tag">#React-Native</a>
           
         </div>
       
@@ -276,16 +280,16 @@ CommonJS的模块规范AMDCMD">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/24/判断浏览器版本/" rel="next" title="判断浏览器版本">
-                <i class="fa fa-chevron-left"></i> 判断浏览器版本
+              <a href="/2016/12/29/在React项目中使用ESLint/" rel="next" title="在React项目中使用ESLint">
+                <i class="fa fa-chevron-left"></i> 在React项目中使用ESLint
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/30/事件冒泡与事件捕获/" rel="prev" title="事件冒泡与事件捕获">
-                事件冒泡与事件捕获 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/29/React-Native中的Navigator性能优化/" rel="prev" title="React-Native中的Navigator性能优化">
+                React-Native中的Navigator性能优化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -312,8 +316,8 @@ CommonJS的模块规范AMDCMD">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/22/javascript的模块规范/"
-           data-title="javascript的模块规范" data-url="http://Easton605.github.io/2016/04/22/javascript的模块规范/">
+      <div class="ds-thread" data-thread-key="2016/12/29/在React-Native中创建跨平台组件/"
+           data-title="在React-Native中创建跨平台组件" data-url="http://Easton605.github.io/2016/12/29/在React-Native中创建跨平台组件/">
       </div>
     
   </div>
@@ -401,7 +405,7 @@ CommonJS的模块规范AMDCMD">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS的模块规范"><span class="nav-number">1.</span> <span class="nav-text">CommonJS的模块规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD"><span class="nav-number">2.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">3.</span> <span class="nav-text">CMD</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何跨平台"><span class="nav-number">1.</span> <span class="nav-text">如何跨平台</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Platform模块"><span class="nav-number">1.1.</span> <span class="nav-text">使用Platform模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用对应文件后缀名"><span class="nav-number">1.2.</span> <span class="nav-text">使用对应文件后缀名</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Toast实战"><span class="nav-number">2.</span> <span class="nav-text">Toast实战</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

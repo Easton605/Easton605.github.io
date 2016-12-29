@@ -56,15 +56,15 @@
 
 
 
-<meta name="description">
+<meta name="description" content="不积跬步无以至千里">
 <meta property="og:type" content="website">
 <meta property="og:title" content="aYu">
 <meta property="og:url" content="http://Easton605.github.io/index.html">
 <meta property="og:site_name" content="aYu">
-<meta property="og:description">
+<meta property="og:description" content="不积跬步无以至千里">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="aYu">
-<meta name="twitter:description">
+<meta name="twitter:description" content="不积跬步无以至千里">
 
 
 
@@ -117,7 +117,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle"></p>
+  <p class="site-subtitle">好好学习，天天向上</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -188,6 +188,335 @@
 
     
     
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/React-Native中的Navigator性能优化/" itemprop="url">
+                  React-Native中的Navigator性能优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T23:01:27+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/29/React-Native中的Navigator性能优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/29/React-Native中的Navigator性能优化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在开发React-Native应用的过程中，我们发现在Navigator跳转的过程中，页面跳转的动画总是会出现掉帧的问题，而且在低端机型上的卡顿更加明显，通过阅读官网的Perfomance一章我们找到以下解决方案。</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>首先我们要弄清楚为什么会卡顿，因为前端从WebView混合开发迁移到React-Native的一大重要原因就是它的性能更好，但是为什么在Navigator的跳转上会出现如此明显的卡顿。</p>
+<p>首先我们从官方文档可以看到Navigator的动画都是由JS线程来渲染的，并不是运行在主线程上，而JS的性能明显是要低于Native的，所以不可避免的会出现卡顿，当然Facebook提供的NavigatorIOS是运行在主线程上，所以它的动画如丝般顺滑，但是我们想要的结果实在两个平台都能做到如丝般顺滑。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="使用InteractionManager-runAfterInteractions"><a href="#使用InteractionManager-runAfterInteractions" class="headerlink" title="使用InteractionManager.runAfterInteractions"></a>使用InteractionManager.runAfterInteractions</h4><p>Facebook给我们提供了一种解决方案，就是使用InteractionManager.runAfterInteractions来放弃页面的即时渲染，等到Navigator的切换动画结束之后再渲染我们的页面，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExpensiveScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props, context) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props, context);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;renderPlaceholderOnly: <span class="literal">true</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    InteractionManager.runAfterInteractions(() =&gt; &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;renderPlaceholderOnly: <span class="literal">false</span>&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.renderPlaceholderOnly) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>._renderPlaceholderView();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;Text&gt;Your full view goes here&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  _renderPlaceholderView() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;Text&gt;Loading...&lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>通过代码，我们明显可以看到它的意图，就是一开始只渲染一个空白或者特别简单的过渡页面，等到动画结束之后，通过修改State的方式再去渲染真正的页面<br>那么我们其实可以想到这个过渡页面其实本来就是应该存在的，因为我们在跳转到下一个页面之后，一般首要做的就是去后台请求数据，而请求数据是需要花费时间的，我们将这个请求数据的等待时间与切换动画结束的等待时间结合一块处理岂不是更好？来重新处理以下我们的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExpensiveScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props, context) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props, context);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.canShowRealView = &#123;</span><br><span class="line">            getDataEnd: <span class="literal">false</span>,</span><br><span class="line">            transitionEnd: <span class="literal">false</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;renderPlaceholderOnly: <span class="literal">true</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillMount() &#123;</span><br><span class="line">        <span class="keyword">this</span>.getDataFromServer().then((data) =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>.showRealView(<span class="literal">true</span>);</span><br><span class="line">        &#125;).catch(() =&gt; &#123;</span><br><span class="line">            <span class="comment">// 异常处理</span></span><br><span class="line">            ...</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentDidMount() &#123;</span><br><span class="line">        InteractionManager.runAfterInteractions(() =&gt; &#123;</span><br><span class="line">            <span class="keyword">this</span>.showRealView(<span class="literal">null</span>, <span class="literal">true</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> getDataFromServer() &#123;</span><br><span class="line">        <span class="comment">// 请求数据的异步流程</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            result = <span class="keyword">await</span> xxx();</span><br><span class="line">        &#125; <span class="keyword">catch</span>(e) &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设定两个参数，等请求的数据返回和Navigator动画全部结束之后再去渲染真正的页面</span></span><br><span class="line">    showRealView(getDataEnd, transitionEnd) &#123;</span><br><span class="line">        <span class="keyword">if</span> (getDataEnd) &#123;</span><br><span class="line">            <span class="keyword">this</span>.canShowRealView.getDataEnd = !!getDataEnd;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (transitionEnd) &#123;</span><br><span class="line">            <span class="keyword">this</span>.canShowRealView.transitionEnd = !!transitionEnd;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.canShowRealView.transitionEnd &amp;&amp; <span class="keyword">this</span>.canShowRealView.getDataEnd) &#123;</span><br><span class="line">            <span class="keyword">this</span>.setState(&#123;renderPlaceholderOnly: <span class="literal">false</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 其他代码无变化</span></span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>如此我们单独的页面中都需要处理这个逻辑来完成过渡页面的渲染，如果在每个单独的页面组件中都增加的话过于冗余，所以我们应该将基本的单独页面组件抽取出一个基本类来，内部包含过渡页面的逻辑，其他的单独页面组件继承该类就可以了<br><em>TODO：这个基本类还在开发过程中，留待后面补充</em></p>
+<h4 id="关闭开发模式"><a href="#关闭开发模式" class="headerlink" title="关闭开发模式"></a>关闭开发模式</h4><p>按照上一步的讲述，我们修改了代码之后，发现Navigator往前跳明显好转了，会有又给loading的过渡页面显示，不会感觉到明显的卡顿，但是后退的时候，由于页面已经存在，不会重新渲染，所以卡顿还是存在，回头又去官方文档翻阅了一遍，突然发现我们平时在开发过程中，应用是会被设置为开发模式，而开发模式下会做很多额外的工作，比如propTyeps的检测，warn提示等，这些都会拖累性能，所以当我们要测试应用的性能时，是应该关闭开发模式，切换为正式的线上运行版本才对。<br>所以我们首先将应用的开发模式关闭，通过摇晃手机在弹出的菜单中勾选掉dev modal即可，只是简单的关闭这一开关我们就发现应用的性能已经明显好转，Navigator跳转动画不再存在一丝卡顿。<br>至于如何切换为正式的线上版本，还在摸索中，不懂Native的前端狗，对于Native中的工程各种懵逼。。等彻底完成之后再来补充对于Navigator性能的其他体会。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/在React-Native中创建跨平台组件/" itemprop="url">
+                  在React-Native中创建跨平台组件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T22:22:58+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/29/在React-Native中创建跨平台组件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/29/在React-Native中创建跨平台组件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>React-Native中，Facebook已经给我们提供了很多的组件，其中大部分都拥有跨平台的能力，但是仍然存在部分组件是无法跨平台的，比如toast组件，Facebook只提供了Android平台上的toast，iOS平台并没有提供，当我们想在两个平台上使用一套代码来运行，无疑我们需要对toast组件进行改造，赋予其跨平台的能力。</p>
+<h3 id="如何跨平台"><a href="#如何跨平台" class="headerlink" title="如何跨平台"></a>如何跨平台</h3><h4 id="使用Platform模块"><a href="#使用Platform模块" class="headerlink" title="使用Platform模块"></a>使用Platform模块</h4><p>当逻辑较简单是我们可以使用React-Native中提供的Platform模块来判断当前所处的平台，从而走不同的分支代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Platform &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// iOS平台下的逻辑</span></span><br><span class="line"><span class="keyword">if</span> (Platform.OS === <span class="string">'ios'</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line"><span class="comment">// Android平台下的逻辑</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (Platform.OS === <span class="string">'android'</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="使用对应文件后缀名"><a href="#使用对应文件后缀名" class="headerlink" title="使用对应文件后缀名"></a>使用对应文件后缀名</h4><p>当逻辑较复杂是我们就应该使用文件后缀名的方式来区分不同的平台，不同平台的代码分处在对应的文件下，逻辑更加清晰，React-Native会自动根据不同的平台去读取不同的文件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名称</span></span><br><span class="line">SomeComponent.andorid.js</span><br><span class="line">SomeComponent.ios.js</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">import</span> SomeComponent <span class="keyword">from</span> <span class="string">'./SomeComponent'</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Toast实战"><a href="#Toast实战" class="headerlink" title="Toast实战"></a>Toast实战</h3><p>如此一来我们的实现思路就清晰了，同时因为Android平台已经提供该组件，所以我们选择在iOS平台下也实现一个具有相同API的原生Toast组件，然后使用Platform的方式来加载不同的Native组件使用，至于iOS如何实现略去不表<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Toast.js</span></span><br><span class="line"><span class="comment">// 重新封装一个名称为Toast的组件，iOS中实现的原生组件名称为ToastIOS</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NativeModules, ToastAndroid, Platform &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> RCTToast = Platform.OS === <span class="string">'android'</span> ? ToastAndroid : NativeModules.ToastIOS;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Toast</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Toast duration constants</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> SHORT = RCTToast.SHORT;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> LONG = RCTToast.LONG;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Toast gravity constants</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> TOP = RCTToast.TOP;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> BOTTOM = RCTToast.BOTTOM;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> CENTER = RCTToast.CENTER;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> show(message, duration) &#123;</span><br><span class="line">        RCTToast.show(</span><br><span class="line">            message,</span><br><span class="line">            duration === <span class="literal">undefined</span> ? <span class="keyword">this</span>.SHORT : duration</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> showWithGravity(message, duration, gravity) &#123;</span><br><span class="line">        RCTToast.showWithGravity(</span><br><span class="line">            message,</span><br><span class="line">            duration === <span class="literal">undefined</span> ? <span class="keyword">this</span>.SHORT : duration,</span><br><span class="line">            gravity</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样子我们封装出来的组件就可以拥有跨平台的功能了，而且使用的方法与Andorid提供的原生组件一致，不会额外增加用户的学习行为。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/29/在React项目中使用ESLint/" itemprop="url">
+                  在React项目中使用ESLint
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-29T22:02:37+08:00" content="2016-12-29">
+              2016-12-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/29/在React项目中使用ESLint/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/29/在React项目中使用ESLint/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>众所周知，JavaScript作为一门动态语言，在语法静态检查方面的缺失，而为了补全这一方面，我们人为的规定了一些代码书写的最佳实践也就是编码规范，但人力有时而穷啊，而且处在一个劳动力解放研究最前沿的软件行业，我们当然要使用工具来代替喽，那么ESLint就是可以用来检查编码规范的一个工具。</p>
+<p><em>本文说的是在React项目中的实践，所以主要是说ESLint在Webpack中的应用，我们假设用户已经安装好了Webpack和Node等前端工具。</em></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li><p>在项目中安装eslint依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装eslint-loader</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint-loader --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装babel-eslint</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-eslint --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>将eslint-loader配置在preLoaders中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">module: &#123;</span><br><span class="line">    preLoaders: [</span><br><span class="line">        <span class="comment">// 语法检查</span></span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/(\.jsx|\.js)$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'eslint-loader'</span></span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    loaders: [</span><br><span class="line">        ...</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成配置文件，我们需要在项目根目录下生成一个.eslintrc的文件，然后在其内部配置具体的检查规则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vi .eslintrc</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化.eslintrc内容</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="comment">// 一行最多80个字符，具体数组中每一个元素的意义请查看文档</span></span><br><span class="line">        <span class="string">"max-len"</span>: [<span class="number">1</span>, <span class="number">80</span>, <span class="number">2</span>, &#123;ignoreComments: <span class="literal">true</span>&#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置具体的规则<br>我们可以选用业界比较流行的规范，比如airbnb的编码规范<br>安装airbnb的配置规则，可以参考<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">它的npm主页</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 注意：在安装过程中，注意warn信息，其中某些依赖的版本可能有特殊要求，不然在执行过程中会报错</span><br><span class="line">npm install eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react --save-dev</span><br><span class="line"></span><br><span class="line">// 修改.eslintrc内容</span><br><span class="line">&#123;</span><br><span class="line">    &quot;parser&quot;: &quot;babel-eslint&quot;,</span><br><span class="line">    &quot;extends&quot;: &quot;airbnb&quot;,</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line">        // 一行最多80个字符，具体数组中每一个元素的意义请查看文档</span><br><span class="line">        &quot;max-len&quot;: [1, 80, 2, &#123;ignoreComments: true&#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义内容<br>虽然我们使用了airbnb的检查规则，但并不代表我们要全盘接受，我们可以在它的基础上增加我们让我们自己舒服的规范，比如缩进的空格数是4个还是2个，完全看团队的选择，代码写着看着舒服最重要</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改.eslintrc内容</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">    <span class="string">"extends"</span>: <span class="string">"airbnb"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"max-len"</span>: [<span class="number">1</span>, <span class="number">120</span>, <span class="number">2</span>, &#123;ignoreComments: <span class="literal">true</span>&#125;],</span><br><span class="line">        <span class="string">"indent"</span>: [<span class="number">2</span>, <span class="number">4</span>],</span><br><span class="line">        <span class="string">"react/jsx-indent"</span>: [<span class="number">2</span>, <span class="number">4</span>],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一些便利性操作<br>我们可以在git或者svn中增加hook，在提交之前运行一遍eslint，如果有错误则不予提交<br>如果使用了jenkins的话也可以在jenkins增加lint检查，检查不过编译失败等等</p>
+</li>
+<li><p>使用<br>使用很方便，我们只需要正常执行webpack命令就可以，eslint会被webpack自动拉起，有错误的时候都会在命令行中打出来，具体错误的一些修改规范请参照eslint的官网规则或者搜索网络上已有的说明。</p>
+</li>
+</ol>
+<h3 id="检测结果展示"><a href="#检测结果展示" class="headerlink" title="检测结果展示"></a>检测结果展示</h3><p><img src="/images/eslint-result.png" alt="截图"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -927,12 +1256,12 @@
                src="/images/ayu.png"
                alt="aYu" />
           <p class="site-author-name" itemprop="name">aYu</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">不积跬步无以至千里</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -942,7 +1271,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -40,7 +40,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="模块化," />
+  <meta name="keywords" content="ESLint," />
 
 
 
@@ -56,19 +56,21 @@
 
 
 
-<meta name="description" content="javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。
-CommonJS的模块规范AMDCMD">
+<meta name="description" content="众所周知，JavaScript作为一门动态语言，在语法静态检查方面的缺失，而为了补全这一方面，我们人为的规定了一些代码书写的最佳实践也就是编码规范，但人力有时而穷啊，而且处在一个劳动力解放研究最前沿的软件行业，我们当然要使用工具来代替喽，那么ESLint就是可以用来检查编码规范的一个工具。
+本文说的是在React项目中的实践，所以主要是说ESLint在Webpack中的应用，我们假设用户已经安装好">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript的模块规范">
-<meta property="og:url" content="http://Easton605.github.io/2016/04/22/javascript的模块规范/index.html">
+<meta property="og:title" content="在React项目中使用ESLint">
+<meta property="og:url" content="http://Easton605.github.io/2016/12/29/在React项目中使用ESLint/index.html">
 <meta property="og:site_name" content="aYu">
-<meta property="og:description" content="javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。
-CommonJS的模块规范AMDCMD">
-<meta property="og:updated_time" content="2016-12-29T14:17:14.581Z">
+<meta property="og:description" content="众所周知，JavaScript作为一门动态语言，在语法静态检查方面的缺失，而为了补全这一方面，我们人为的规定了一些代码书写的最佳实践也就是编码规范，但人力有时而穷啊，而且处在一个劳动力解放研究最前沿的软件行业，我们当然要使用工具来代替喽，那么ESLint就是可以用来检查编码规范的一个工具。
+本文说的是在React项目中的实践，所以主要是说ESLint在Webpack中的应用，我们假设用户已经安装好">
+<meta property="og:image" content="http://Easton605.github.io/images/eslint-result.png">
+<meta property="og:updated_time" content="2016-12-29T14:21:41.150Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript的模块规范">
-<meta name="twitter:description" content="javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。
-CommonJS的模块规范AMDCMD">
+<meta name="twitter:title" content="在React项目中使用ESLint">
+<meta name="twitter:description" content="众所周知，JavaScript作为一门动态语言，在语法静态检查方面的缺失，而为了补全这一方面，我们人为的规定了一些代码书写的最佳实践也就是编码规范，但人力有时而穷啊，而且处在一个劳动力解放研究最前沿的软件行业，我们当然要使用工具来代替喽，那么ESLint就是可以用来检查编码规范的一个工具。
+本文说的是在React项目中的实践，所以主要是说ESLint在Webpack中的应用，我们假设用户已经安装好">
+<meta name="twitter:image" content="http://Easton605.github.io/images/eslint-result.png">
 
 
 
@@ -86,7 +88,7 @@ CommonJS的模块规范AMDCMD">
   };
 </script>
 
-  <title> javascript的模块规范 | aYu </title>
+  <title> 在React项目中使用ESLint | aYu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -206,7 +208,7 @@ CommonJS的模块规范AMDCMD">
             
             
               
-                javascript的模块规范
+                在React项目中使用ESLint
               
             
           </h1>
@@ -218,8 +220,8 @@ CommonJS的模块规范AMDCMD">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T23:45:21+08:00" content="2016-04-22">
-              2016-04-22
+            <time itemprop="dateCreated" datetime="2016-12-29T22:02:37+08:00" content="2016-12-29">
+              2016-12-29
             </time>
           </span>
 
@@ -229,8 +231,8 @@ CommonJS的模块规范AMDCMD">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/22/javascript的模块规范/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/22/javascript的模块规范/" itemprop="commentsCount"></span>
+                <a href="/2016/12/29/在React项目中使用ESLint/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/29/在React项目中使用ESLint/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -252,8 +254,39 @@ CommonJS的模块规范AMDCMD">
       
 
       
-        <p>javascript的模块规范主要有CommonJS，AMD和国内比较著名的还是CMD。</p>
-<h3 id="CommonJS的模块规范"><a href="#CommonJS的模块规范" class="headerlink" title="CommonJS的模块规范"></a>CommonJS的模块规范</h3><h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3>
+        <p>众所周知，JavaScript作为一门动态语言，在语法静态检查方面的缺失，而为了补全这一方面，我们人为的规定了一些代码书写的最佳实践也就是编码规范，但人力有时而穷啊，而且处在一个劳动力解放研究最前沿的软件行业，我们当然要使用工具来代替喽，那么ESLint就是可以用来检查编码规范的一个工具。</p>
+<p><em>本文说的是在React项目中的实践，所以主要是说ESLint在Webpack中的应用，我们假设用户已经安装好了Webpack和Node等前端工具。</em></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li><p>在项目中安装eslint依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装eslint-loader</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install eslint-loader --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装babel-eslint</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-eslint --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li><p>将eslint-loader配置在preLoaders中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">module: &#123;</span><br><span class="line">    preLoaders: [</span><br><span class="line">        <span class="comment">// 语法检查</span></span><br><span class="line">        &#123;</span><br><span class="line">            test: <span class="regexp">/(\.jsx|\.js)$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'eslint-loader'</span></span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    loaders: [</span><br><span class="line">        ...</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成配置文件，我们需要在项目根目录下生成一个.eslintrc的文件，然后在其内部配置具体的检查规则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">vi .eslintrc</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化.eslintrc内容</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="comment">// 一行最多80个字符，具体数组中每一个元素的意义请查看文档</span></span><br><span class="line">        <span class="string">"max-len"</span>: [<span class="number">1</span>, <span class="number">80</span>, <span class="number">2</span>, &#123;ignoreComments: <span class="literal">true</span>&#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置具体的规则<br>我们可以选用业界比较流行的规范，比如airbnb的编码规范<br>安装airbnb的配置规则，可以参考<a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">它的npm主页</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 注意：在安装过程中，注意warn信息，其中某些依赖的版本可能有特殊要求，不然在执行过程中会报错</span><br><span class="line">npm install eslint-config-airbnb eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-react --save-dev</span><br><span class="line"></span><br><span class="line">// 修改.eslintrc内容</span><br><span class="line">&#123;</span><br><span class="line">    &quot;parser&quot;: &quot;babel-eslint&quot;,</span><br><span class="line">    &quot;extends&quot;: &quot;airbnb&quot;,</span><br><span class="line">    &quot;rules&quot;: &#123;</span><br><span class="line">        // 一行最多80个字符，具体数组中每一个元素的意义请查看文档</span><br><span class="line">        &quot;max-len&quot;: [1, 80, 2, &#123;ignoreComments: true&#125;],</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义内容<br>虽然我们使用了airbnb的检查规则，但并不代表我们要全盘接受，我们可以在它的基础上增加我们让我们自己舒服的规范，比如缩进的空格数是4个还是2个，完全看团队的选择，代码写着看着舒服最重要</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改.eslintrc内容</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"parser"</span>: <span class="string">"babel-eslint"</span>,</span><br><span class="line">    <span class="string">"extends"</span>: <span class="string">"airbnb"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: &#123;</span><br><span class="line">        <span class="string">"max-len"</span>: [<span class="number">1</span>, <span class="number">120</span>, <span class="number">2</span>, &#123;ignoreComments: <span class="literal">true</span>&#125;],</span><br><span class="line">        <span class="string">"indent"</span>: [<span class="number">2</span>, <span class="number">4</span>],</span><br><span class="line">        <span class="string">"react/jsx-indent"</span>: [<span class="number">2</span>, <span class="number">4</span>],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一些便利性操作<br>我们可以在git或者svn中增加hook，在提交之前运行一遍eslint，如果有错误则不予提交<br>如果使用了jenkins的话也可以在jenkins增加lint检查，检查不过编译失败等等</p>
+</li>
+<li><p>使用<br>使用很方便，我们只需要正常执行webpack命令就可以，eslint会被webpack自动拉起，有错误的时候都会在命令行中打出来，具体错误的一些修改规范请参照eslint的官网规则或者搜索网络上已有的说明。</p>
+</li>
+</ol>
+<h3 id="检测结果展示"><a href="#检测结果展示" class="headerlink" title="检测结果展示"></a>检测结果展示</h3><p><img src="/images/eslint-result.png" alt="截图"></p>
+
       
     </div>
 
@@ -267,7 +300,7 @@ CommonJS的模块规范AMDCMD">
       
         <div class="post-tags">
           
-            <a href="/tags/模块化/" rel="tag">#模块化</a>
+            <a href="/tags/ESLint/" rel="tag">#ESLint</a>
           
         </div>
       
@@ -276,16 +309,16 @@ CommonJS的模块规范AMDCMD">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/24/判断浏览器版本/" rel="next" title="判断浏览器版本">
-                <i class="fa fa-chevron-left"></i> 判断浏览器版本
+              <a href="/2016/07/28/Web前端开发入门/" rel="next" title="Web前端开发入门">
+                <i class="fa fa-chevron-left"></i> Web前端开发入门
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/30/事件冒泡与事件捕获/" rel="prev" title="事件冒泡与事件捕获">
-                事件冒泡与事件捕获 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/29/在React-Native中创建跨平台组件/" rel="prev" title="在React-Native中创建跨平台组件">
+                在React-Native中创建跨平台组件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -312,8 +345,8 @@ CommonJS的模块规范AMDCMD">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/22/javascript的模块规范/"
-           data-title="javascript的模块规范" data-url="http://Easton605.github.io/2016/04/22/javascript的模块规范/">
+      <div class="ds-thread" data-thread-key="2016/12/29/在React项目中使用ESLint/"
+           data-title="在React项目中使用ESLint" data-url="http://Easton605.github.io/2016/12/29/在React项目中使用ESLint/">
       </div>
     
   </div>
@@ -401,7 +434,7 @@ CommonJS的模块规范AMDCMD">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS的模块规范"><span class="nav-number">1.</span> <span class="nav-text">CommonJS的模块规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD"><span class="nav-number">2.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">3.</span> <span class="nav-text">CMD</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测结果展示"><span class="nav-number">3.</span> <span class="nav-text">检测结果展示</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
